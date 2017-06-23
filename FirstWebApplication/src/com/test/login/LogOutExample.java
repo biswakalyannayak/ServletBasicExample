@@ -1,4 +1,4 @@
-package com.test.session;
+package com.test.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class SessionExample
+ * Servlet implementation class LogOutExample
  */
-@WebServlet("/SessionExample")
-public class SessionExample extends HttpServlet {
+@WebServlet("/LogOutExample")
+public class LogOutExample extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SessionExample() {
+    public LogOutExample() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,27 +29,24 @@ public class SessionExample extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		 response.setContentType("text/html");  
+	        PrintWriter out = response.getWriter();  
+	      
+	        HttpSession session=request.getSession(false);  
+	        session.invalidate();//invalidating session  
+	          
+	        out.print("You are successfully logged out");  
+	          
+	          
+	        out.close();  
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 response.setContentType("text/html");  
-	        PrintWriter out = response.getWriter();  
-	          
-	        String n=request.getParameter("user");  
-	        out.print("Welcome "+n);  
-	          
-	        HttpSession session=request.getSession();  
-	        session.setAttribute("uname",n); 
-	        session.setAttribute("password",request.getParameter("pass")); 
-	  
-	        out.print("<a href='SessionExampleLanding'>visit</a>");  
-	                  
-	        out.close();  
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
