@@ -8,7 +8,7 @@
 </head>
 <body>
 <jsp:forward page="printdate.jsp" >  
-<jsp:param name="name" value="javatpoint.com" />  
+<jsp:param name="name" value="http://google.com" />  
 </jsp:forward>
 </body>
 </html>
